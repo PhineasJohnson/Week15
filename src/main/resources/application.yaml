@@ -1,0 +1,10 @@
+spring:
+   datasource:
+      username: pet-store
+      password: pet-store
+      url: jdbc:mysql://localhost:3306/pet-store
+   
+   jpa:
+      hibernate:
+         ddl-auto: create
+      show-sql: true
