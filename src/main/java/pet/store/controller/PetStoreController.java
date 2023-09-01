@@ -17,14 +17,14 @@ import pet.store.controller.model.PetStoreData.PetStoreEmployee;
 import pet.store.service.PetStoreService;
 
 @RestController
-@RequestMapping("/pet_store")
+@RequestMapping("/pet-store")
 @Slf4j
 public class PetStoreController {
 	
 	@Autowired 
 	private PetStoreService petStoreService;
 	
-	@PostMapping("/pet_store")
+	@PostMapping("/pet-store")
 	@ResponseStatus(code = HttpStatus.CREATED)
 	public PetStoreData savePetStore(
 			@RequestBody PetStoreData petStoreData) {
@@ -33,7 +33,7 @@ public class PetStoreController {
 		return petStoreService.savePetStore(petStoreData);
 	}
 	
-	@PutMapping("/pet_store/{petStoreId}")
+	@PutMapping("/pet-store/{petStoreId}")
 	public PetStoreData updatePetStore(
 			@PathVariable Long petStoreId,
 			@RequestBody PetStoreData petStoreData) {
@@ -44,7 +44,7 @@ public class PetStoreController {
 		return petStoreService.savePetStore(petStoreData);
 	}
 	
-	@PostMapping("/pet_store/{petStoreId}/employee")
+	@PostMapping("/pet-store/{petStoreId}/employee")
 	@ResponseStatus(code = HttpStatus.CREATED)
 	public PetStoreEmployee addEmployee(
 			@PathVariable("petStoreId") Long petStoreId,
@@ -53,7 +53,7 @@ public class PetStoreController {
 		return petStoreService.saveEmployee(petStoreId, employee);
 	}
 	
-	@PostMapping("/pet_store/{petStoreId}/customer")
+	@PostMapping("/pet-store/{petStoreId}/customer")
 	@ResponseStatus(code = HttpStatus.CREATED)
 	public PetStoreCustomer addCustomer(
 			@PathVariable("petStoreId") Long petStoreId,
