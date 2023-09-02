@@ -1,5 +1,7 @@
 package pet.store.service;
 
+import java.util.LinkedList;
+import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Objects;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -148,5 +150,32 @@ public class PetStoreService {
 			return customer;
 		}
 		
+	}
+	
+	public List<PetStoreData> retrieveAllPetStores() {
+		List<PetStoreData> result = new LinkedList<>();
+		List<PetStore> petStores = petStoreDao.findAll();
+		
+		for (PetStore petStore : petStores) {
+			PetStoreData psd = new PetStoreData(petStore);
+			psd.getCustomers().clear();
+			psd.getEmployees().clear();
+			
+			result.add(psd);
+		}
+		
+		return result;
+	}
+	
+	public PetStoreData getPetStoreById(Long petStoreId) {
+		PetStore petStore = petStoreDao.findById(petStoreId).orElseThrow(()
+				-> new NoSuchElementException("Pet store with ID=" + petStoreId + " was not found."));
+		
+		return new PetStoreData(petStore);
+	}
+	
+	public void deletePetStoreById(Long petStoreId) {
+		PetStore petStore = findPetStoreById(petStoreId);
+		petStoreDao.delete(petStore);
 	}
 }
